@@ -1,5 +1,6 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
+import { Analytics } from "@vercel/analytics/next";
 
 import classNames from "classnames";
 
@@ -87,11 +88,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         primary.variable,
         secondary ? secondary.variable : "",
         tertiary ? tertiary.variable : "",
-        code.variable,
+        code.variable
       )}
     >
       <ToastProvider>
-        <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
+        <Column
+          style={{ minHeight: "100vh" }}
+          as="body"
+          fillWidth
+          margin="0"
+          padding="0"
+        >
           <Background
             mask={{
               cursor: effects.mask.cursor,
@@ -157,6 +164,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <Footer />
         </Column>
       </ToastProvider>
+      <Analytics />
     </Flex>
   );
 }
