@@ -54,13 +54,11 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log("handleScroll called");
       const sections = document.querySelectorAll("section");
-
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
 
@@ -68,8 +66,6 @@ export const Header = () => {
           window.pageYOffset >= section.offsetTop + 34 &&
           window.pageYOffset < section.offsetTop + section.offsetHeight + 34
         ) {
-          console.log("window.pageYOffset", window.pageYOffset);
-          console.log("section.offsetTop", section.offsetTop);
           let current = section.getAttribute("id");
           setActiveSection(current);
         }
@@ -133,14 +129,6 @@ export const Header = () => {
             horizontal="center"
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
-              {routes["/"] && (
-                <ToggleButton
-                  prefixIcon="home"
-                  href="/"
-                  selected={pathname === "/"}
-                />
-              )}
-              <Line vert maxHeight="24" />
               {routes["/about"] && (
                 <>
                   <ToggleButton
