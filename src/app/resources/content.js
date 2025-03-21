@@ -9,6 +9,7 @@ const person = {
   role: "Full Stack Engineer",
   avatar: "/images/avatar.jpg",
   location: "Asia/Kolkata", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  personality: "INFJ-T",
   languages: ["English", "Hindi"], // optional: Leave the array empty if you don't want to display languages
 };
 
@@ -70,7 +71,7 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://cal.com/pruthvi-anvesh-muga",
   },
   intro: {
     display: true,
@@ -130,9 +131,9 @@ const about = {
       },
     ],
   },
-  studies: {
+  education: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Education",
     institutions: [
       {
         name: "University of Jakarta",

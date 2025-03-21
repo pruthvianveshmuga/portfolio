@@ -35,6 +35,8 @@ import {
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
+import PersonalityIcon from "./icons/svg/PersonalityIcon";
+
 export const iconLibrary: Record<string, IconType> = {
   chevronUp: HiChevronUp,
   chevronDown: HiChevronDown,
@@ -51,6 +53,7 @@ export const iconLibrary: Record<string, IconType> = {
   checkCircle: HiCheckCircle,
   email: HiEnvelope,
   globe: HiMiniGlobeAsiaAustralia,
+  personality: PersonalityIcon,
   person: PiUserCircleDuotone,
   grid: PiGridFourDuotone,
   book: PiBookBookmarkDuotone,

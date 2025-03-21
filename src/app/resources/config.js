@@ -4,7 +4,7 @@ const routes = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": true,
+  "/education": true,
   "/gallery": true,
 };
 
@@ -63,8 +63,8 @@ const effects = {
 };
 
 const display = {
-  location: true,
-  time: true,
+  location: false,
+  toolbar: false,
 };
 
 const mailchimp = {

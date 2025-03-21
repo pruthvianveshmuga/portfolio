@@ -31,9 +31,11 @@ export function AboutContent() {
       items: about.work.experiences.map((experience) => experience.company),
     },
     {
-      title: about.studies.title,
-      display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
+      title: about.education.title,
+      display: about.education.display,
+      items: about.education.institutions.map(
+        (institution) => institution.name
+      ),
     },
     {
       title: about.technical.title,
@@ -57,8 +59,8 @@ export function AboutContent() {
             >
               <Avatar src={person.avatar} size="xl" />
               <Flex gap="8" vertical="center">
-                <Icon onBackground="accent-weak" name="globe" />
-                {person.location}
+                <Icon name="personality" size="m" />
+                {person.personality}
               </Flex>
               {person.languages.length > 0 && (
                 <Flex wrap gap="8">
@@ -261,18 +263,18 @@ export function AboutContent() {
               )}
             </section>
             <section ref={sectionRefs.studies}>
-              {about.studies.display && (
+              {about.education.display && (
                 <>
                   <Heading
                     as="h2"
-                    id={about.studies.title}
+                    id={about.education.title}
                     variant="display-strong-s"
                     marginBottom="m"
                   >
-                    {about.studies.title}
+                    {about.education.title}
                   </Heading>
                   <Column fillWidth gap="l" marginBottom="40">
-                    {about.studies.institutions.map((institution, index) => (
+                    {about.education.institutions.map((institution, index) => (
                       <Column
                         key={`${institution.name}-${index}`}
                         fillWidth

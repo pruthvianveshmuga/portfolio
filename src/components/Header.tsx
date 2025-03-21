@@ -162,7 +162,7 @@ export const Header = () => {
                   />
                 </>
               )}
-              {routes["/blog"] && (
+              {routes["/education"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
@@ -208,7 +208,7 @@ export const Header = () => {
             gap="20"
           >
             <Flex hide="s">
-              {display.time && <TimeDisplay timeZone={person.location} />}
+              {display.toolbar && <TimeDisplay timeZone={person.location} />}
             </Flex>
           </Flex>
         </Flex>
