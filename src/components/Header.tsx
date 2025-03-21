@@ -54,7 +54,46 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const [activeSection, setActiveSection] = useState("home");
 
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log("handleScroll called");
+      const sections = document.querySelectorAll("section");
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+
+        if (
+          window.pageYOffset >= section.offsetTop + 34 &&
+          window.pageYOffset < section.offsetTop + section.offsetHeight + 34
+        ) {
+          console.log("window.pageYOffset", window.pageYOffset);
+          console.log("section.offsetTop", section.offsetTop);
+          let current = section.getAttribute("id");
+          setActiveSection(current);
+        }
+      });
+    };
+    // Add event listeners
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up event listeners
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Smooth scroll function
+  const scrollTo = (id: string, offset: number = 80) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop + 34,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <>
       <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
@@ -124,15 +163,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="grid"
-                    href="/work"
                     label={work.label}
-                    selected={pathname.startsWith("/work")}
+                    onClick={() => scrollTo("work")}
+                    selected={activeSection === "work"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="grid"
-                    href="/work"
-                    selected={pathname.startsWith("/work")}
+                    onClick={() => scrollTo("work")}
+                    selected={activeSection === "work"}
                   />
                 </>
               )}
