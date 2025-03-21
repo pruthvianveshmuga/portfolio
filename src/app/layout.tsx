@@ -12,6 +12,7 @@ import { Source_Code_Pro } from "next/font/google";
 
 import { person, home } from "@/app/resources/content";
 import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
+import { SectionProvider } from "@/context/SectionContext";
 
 export async function generateMetadata() {
   return {
@@ -147,20 +148,22 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             }}
           />
           <Flex fillWidth minHeight="16"></Flex>
-          <Header />
-          <Flex
-            position="relative"
-            zIndex={0}
-            fillWidth
-            paddingY="l"
-            paddingX="l"
-            horizontal="center"
-            flex={1}
-          >
-            <Flex horizontal="center" fillWidth minHeight="0">
-              <RouteGuard>{children}</RouteGuard>
+          <SectionProvider>
+            <Header />
+            <Flex
+              position="relative"
+              zIndex={0}
+              fillWidth
+              paddingY="l"
+              paddingX="l"
+              horizontal="center"
+              flex={1}
+            >
+              <Flex horizontal="center" fillWidth minHeight="0">
+                <RouteGuard>{children}</RouteGuard>
+              </Flex>
             </Flex>
-          </Flex>
+          </SectionProvider>
           <Footer />
         </Column>
       </ToastProvider>

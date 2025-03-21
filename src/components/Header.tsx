@@ -7,14 +7,25 @@ import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
-import { person, home, about, blog, work, gallery } from "@/app/resources/content";
+import {
+  person,
+  home,
+  about,
+  blog,
+  work,
+  gallery,
+} from "@/app/resources/content";
+import { useSectionRefs } from "@/context/SectionContext";
 
 type TimeDisplayProps = {
   timeZone: string;
   locale?: string; // Optionally allow locale, defaulting to 'en-GB'
 };
 
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
+const TimeDisplay: React.FC<TimeDisplayProps> = ({
+  timeZone,
+  locale = "en-GB",
+}) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
@@ -44,11 +55,52 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const [activeSection, setActiveSection] = useState("about");
+  const sectionRefs = useSectionRefs();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 34;
+
+      Object.entries(sectionRefs).forEach(([id, ref]) => {
+        if (!ref.current) return;
+
+        const element = ref.current;
+        const sectionTop = element.offsetTop;
+        const sectionBottom = sectionTop + element.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          setActiveSection(id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionRefs]);
+
+  const scrollTo = (id: string) => {
+    const sectionRef = sectionRefs[id as keyof typeof sectionRefs];
+    if (sectionRef.current) {
+      window.scrollTo({
+        top: sectionRef.current.offsetTop + 34,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <>
       <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
-      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
+      <Fade
+        show="s"
+        fillWidth
+        position="fixed"
+        bottom="0"
+        to="top"
+        height="80"
+        zIndex={9}
+      />
       <Flex
         fitHeight
         className={styles.position}
@@ -58,7 +110,12 @@ export const Header = () => {
         padding="8"
         horizontal="center"
       >
-        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
+        <Flex
+          paddingLeft="12"
+          fillWidth
+          vertical="center"
+          textVariant="body-default-s"
+        >
           {display.location && <Flex hide="s">{person.location}</Flex>}
         </Flex>
         <Flex fillWidth horizontal="center">
@@ -71,24 +128,20 @@ export const Header = () => {
             horizontal="center"
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
-              {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
-              )}
-              <Line vert maxHeight="24" />
               {routes["/about"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="person"
-                    href="/about"
                     label={about.label}
-                    selected={pathname === "/about"}
+                    onClick={() => scrollTo("about")}
+                    selected={activeSection === "about"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="person"
-                    href="/about"
-                    selected={pathname === "/about"}
+                    onClick={() => scrollTo("about")}
+                    selected={activeSection === "about"}
                   />
                 </>
               )}
@@ -97,15 +150,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="grid"
-                    href="/work"
                     label={work.label}
-                    selected={pathname.startsWith("/work")}
+                    onClick={() => scrollTo("work")}
+                    selected={activeSection === "work"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="grid"
-                    href="/work"
-                    selected={pathname.startsWith("/work")}
+                    onClick={() => scrollTo("work")}
+                    selected={activeSection === "work"}
                   />
                 </>
               )}
@@ -114,15 +167,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="book"
-                    href="/blog"
-                    label={blog.label}
-                    selected={pathname.startsWith("/blog")}
+                    label={"Studies"}
+                    onClick={() => scrollTo("studies")}
+                    selected={activeSection === "studies"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="book"
-                    href="/blog"
-                    selected={pathname.startsWith("/blog")}
+                    onClick={() => scrollTo("studies")}
+                    selected={activeSection === "studies"}
                   />
                 </>
               )}
@@ -131,15 +184,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="gallery"
-                    href="/gallery"
-                    label={gallery.label}
-                    selected={pathname.startsWith("/gallery")}
+                    label={"Tech"}
+                    onClick={() => scrollTo("tech")}
+                    selected={activeSection === "tech"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="gallery"
-                    href="/gallery"
-                    selected={pathname.startsWith("/gallery")}
+                    onClick={() => scrollTo("tech")}
+                    selected={activeSection === "tech"}
                   />
                 </>
               )}
@@ -154,7 +207,9 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            <Flex hide="s">
+              {display.time && <TimeDisplay timeZone={person.location} />}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
