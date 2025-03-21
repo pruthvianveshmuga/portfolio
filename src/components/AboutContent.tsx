@@ -20,28 +20,6 @@ import { useSectionRefs } from "@/context/SectionContext";
 
 export function AboutContent() {
   const sectionRefs = useSectionRefs();
-  const structure = [
-    {
-      title: info.about.title,
-      display: info.about.display,
-      items: [],
-    },
-    {
-      title: info.work.title,
-      display: info.work.display,
-      items: info.work.experiences.map((experience) => experience.company),
-    },
-    {
-      title: info.education.title,
-      display: info.education.display,
-      items: info.education.institutions.map((institution) => institution.name),
-    },
-    {
-      title: info.skills.title,
-      display: info.skills.display,
-      items: info.skills.skills.map((skill) => skill.title),
-    },
-  ];
   return (
     <Column maxWidth="m">
       <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="m">

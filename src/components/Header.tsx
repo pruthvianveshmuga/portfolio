@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { RefObject, useEffect, useState } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 
 import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
@@ -89,6 +89,25 @@ export const Header = () => {
     }
   };
 
+  const navLinks = [
+    {
+      section: "about",
+      icon: "person",
+    },
+    {
+      section: "work",
+      icon: "grid",
+    },
+    {
+      section: "education",
+      icon: "book",
+    },
+    {
+      section: "skills",
+      icon: "tools",
+    },
+  ];
+
   return (
     <>
       <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
@@ -128,73 +147,25 @@ export const Header = () => {
             horizontal="center"
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
-              {routes["#about"] && (
-                <>
-                  <ToggleButton
-                    className="s-flex-hide"
-                    prefixIcon="person"
-                    label={info.about.label}
-                    onClick={() => scrollTo(sectionRefs["about"])}
-                    selected={activeSection === "about"}
-                  />
-                  <ToggleButton
-                    className="s-flex-show"
-                    prefixIcon="person"
-                    onClick={() => scrollTo(sectionRefs["about"])}
-                    selected={activeSection === "about"}
-                  />
-                </>
-              )}
-              {routes["#work"] && (
-                <>
-                  <ToggleButton
-                    className="s-flex-hide"
-                    prefixIcon="grid"
-                    label={info.work.label}
-                    onClick={() => scrollTo(sectionRefs["work"])}
-                    selected={activeSection === "work"}
-                  />
-                  <ToggleButton
-                    className="s-flex-show"
-                    prefixIcon="grid"
-                    onClick={() => scrollTo(sectionRefs["work"])}
-                    selected={activeSection === "work"}
-                  />
-                </>
-              )}
-              {routes["#education"] && (
-                <>
-                  <ToggleButton
-                    className="s-flex-hide"
-                    prefixIcon="book"
-                    label={info.education.label}
-                    onClick={() => scrollTo(sectionRefs["education"])}
-                    selected={activeSection === "education"}
-                  />
-                  <ToggleButton
-                    className="s-flex-show"
-                    prefixIcon="book"
-                    onClick={() => scrollTo(sectionRefs["education"])}
-                    selected={activeSection === "education"}
-                  />
-                </>
-              )}
-              {routes["#skills"] && (
-                <>
-                  <ToggleButton
-                    className="s-flex-hide"
-                    prefixIcon="tools"
-                    label={info.skills.label}
-                    onClick={() => scrollTo(sectionRefs["skills"])}
-                    selected={activeSection === "skills"}
-                  />
-                  <ToggleButton
-                    className="s-flex-show"
-                    prefixIcon="tools"
-                    onClick={() => scrollTo(sectionRefs["skills"])}
-                    selected={activeSection === "skills"}
-                  />
-                </>
+              {navLinks.map(
+                ({ section, icon }) =>
+                  routes[`#${section}`] && (
+                    <React.Fragment key={section}>
+                      <ToggleButton
+                        className="s-flex-hide"
+                        prefixIcon={icon}
+                        label={info[section].label}
+                        onClick={() => scrollTo(sectionRefs[section])}
+                        selected={activeSection === section}
+                      />
+                      <ToggleButton
+                        className="s-flex-show"
+                        prefixIcon={icon}
+                        onClick={() => scrollTo(sectionRefs[section])}
+                        selected={activeSection === section}
+                      />
+                    </React.Fragment>
+                  )
               )}
             </Flex>
           </Flex>
