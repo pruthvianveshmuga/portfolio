@@ -262,7 +262,7 @@ export function AboutContent() {
                 </>
               )}
             </section>
-            <section ref={sectionRefs.studies}>
+            <section ref={sectionRefs.education}>
               {about.education.display && (
                 <>
                   <Heading

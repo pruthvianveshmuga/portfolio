@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
@@ -79,8 +79,8 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sectionRefs]);
 
-  const scrollTo = (id: string) => {
-    const sectionRef = sectionRefs[id as keyof typeof sectionRefs];
+  const scrollTo = (sectionRef: RefObject<HTMLElement>) => {
+    // const sectionRef = sectionRefs[id as keyof typeof sectionRefs];
     if (sectionRef.current) {
       window.scrollTo({
         top: sectionRef.current.offsetTop + 34,
@@ -128,70 +128,70 @@ export const Header = () => {
             horizontal="center"
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
-              {routes["/about"] && (
+              {routes["#about"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="person"
                     label={about.label}
-                    onClick={() => scrollTo("about")}
+                    onClick={() => scrollTo(sectionRefs["about"])}
                     selected={activeSection === "about"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="person"
-                    onClick={() => scrollTo("about")}
+                    onClick={() => scrollTo(sectionRefs["about"])}
                     selected={activeSection === "about"}
                   />
                 </>
               )}
-              {routes["/work"] && (
+              {routes["#work"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="grid"
                     label={work.label}
-                    onClick={() => scrollTo("work")}
+                    onClick={() => scrollTo(sectionRefs["work"])}
                     selected={activeSection === "work"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="grid"
-                    onClick={() => scrollTo("work")}
+                    onClick={() => scrollTo(sectionRefs["work"])}
                     selected={activeSection === "work"}
                   />
                 </>
               )}
-              {routes["/education"] && (
+              {routes["#education"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="book"
-                    label={"Studies"}
-                    onClick={() => scrollTo("studies")}
-                    selected={activeSection === "studies"}
+                    label={"Education"}
+                    onClick={() => scrollTo(sectionRefs["education"])}
+                    selected={activeSection === "education"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="book"
-                    onClick={() => scrollTo("studies")}
-                    selected={activeSection === "studies"}
+                    onClick={() => scrollTo(sectionRefs["education"])}
+                    selected={activeSection === "education"}
                   />
                 </>
               )}
-              {routes["/gallery"] && (
+              {routes["#skills"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="gallery"
                     label={"Tech"}
-                    onClick={() => scrollTo("tech")}
+                    onClick={() => scrollTo(sectionRefs["tech"])}
                     selected={activeSection === "tech"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="gallery"
-                    onClick={() => scrollTo("tech")}
+                    onClick={() => scrollTo(sectionRefs["tech"])}
                     selected={activeSection === "tech"}
                   />
                 </>

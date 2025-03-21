@@ -2,10 +2,10 @@ const baseURL = "demo.magic-portfolio.com";
 
 const routes = {
   "/": true,
-  "/about": true,
-  "/work": true,
-  "/education": true,
-  "/gallery": true,
+  "#about": true,
+  "#work": true,
+  "#education": true,
+  "#skills": true,
 };
 
 // Enable password protection on selected routes
