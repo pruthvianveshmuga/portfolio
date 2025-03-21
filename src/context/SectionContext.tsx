@@ -6,7 +6,7 @@ interface SectionRefs {
   about: React.RefObject<HTMLElement>;
   work: React.RefObject<HTMLElement>;
   education: React.RefObject<HTMLElement>;
-  tech: React.RefObject<HTMLElement>;
+  skills: React.RefObject<HTMLElement>;
 }
 
 const SectionContext = createContext<SectionRefs | null>(null);
@@ -16,7 +16,7 @@ export function SectionProvider({ children }: { children: ReactNode }) {
     about: useRef<HTMLElement>(null),
     work: useRef<HTMLElement>(null),
     education: useRef<HTMLElement>(null),
-    tech: useRef<HTMLElement>(null),
+    skills: useRef<HTMLElement>(null),
   };
 
   return (

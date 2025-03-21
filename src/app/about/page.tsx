@@ -1,10 +1,10 @@
-import { about } from "@/app/resources/content";
+import { info } from "@/app/resources/content";
 import { baseURL } from "@/app/resources";
 import { AboutContent } from "@/components/AboutContent";
 
 export async function generateMetadata() {
-  const title = about.title;
-  const description = about.description;
+  const title = info.title;
+  const description = info.description;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {

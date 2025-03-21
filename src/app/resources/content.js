@@ -58,8 +58,7 @@ const home = {
   ),
 };
 
-const about = {
-  label: "About",
+const info = {
   title: "About me",
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
@@ -73,7 +72,8 @@ const about = {
     display: true,
     link: "https://cal.com/pruthvi-anvesh-muga",
   },
-  intro: {
+  about: {
+    label: "About",
     display: true,
     title: "Introduction",
     description: (
@@ -86,6 +86,7 @@ const about = {
     ),
   },
   work: {
+    label: "Work",
     display: true, // set to false to hide this section
     title: "Work Experience",
     experiences: [
@@ -132,6 +133,7 @@ const about = {
     ],
   },
   education: {
+    label: "Education",
     display: true, // set to false to hide this section
     title: "Education",
     institutions: [
@@ -145,7 +147,8 @@ const about = {
       },
     ],
   },
-  technical: {
+  skills: {
+    label: "Skills",
     display: true, // set to false to hide this section
     title: "Technical skills",
     skills: [
@@ -284,4 +287,4 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, info, blog, work, gallery };

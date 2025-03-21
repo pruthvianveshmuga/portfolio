@@ -10,7 +10,7 @@ import { routes, display } from "@/app/resources";
 import {
   person,
   home,
-  about,
+  info,
   blog,
   work,
   gallery,
@@ -133,7 +133,7 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="person"
-                    label={about.label}
+                    label={info.about.label}
                     onClick={() => scrollTo(sectionRefs["about"])}
                     selected={activeSection === "about"}
                   />
@@ -150,7 +150,7 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="grid"
-                    label={work.label}
+                    label={info.work.label}
                     onClick={() => scrollTo(sectionRefs["work"])}
                     selected={activeSection === "work"}
                   />
@@ -167,7 +167,7 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="book"
-                    label={"Education"}
+                    label={info.education.label}
                     onClick={() => scrollTo(sectionRefs["education"])}
                     selected={activeSection === "education"}
                   />
@@ -183,16 +183,16 @@ export const Header = () => {
                 <>
                   <ToggleButton
                     className="s-flex-hide"
-                    prefixIcon="gallery"
-                    label={"Tech"}
-                    onClick={() => scrollTo(sectionRefs["tech"])}
-                    selected={activeSection === "tech"}
+                    prefixIcon="tools"
+                    label={info.skills.label}
+                    onClick={() => scrollTo(sectionRefs["skills"])}
+                    selected={activeSection === "skills"}
                   />
                   <ToggleButton
                     className="s-flex-show"
-                    prefixIcon="gallery"
-                    onClick={() => scrollTo(sectionRefs["tech"])}
-                    selected={activeSection === "tech"}
+                    prefixIcon="tools"
+                    onClick={() => scrollTo(sectionRefs["skills"])}
+                    selected={activeSection === "skills"}
                   />
                 </>
               )}
