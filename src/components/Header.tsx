@@ -146,15 +146,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="person"
-                    href="/about"
                     label={about.label}
-                    selected={pathname === "/about"}
+                    onClick={() => scrollTo("about")}
+                    selected={activeSection === "about"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="person"
-                    href="/about"
-                    selected={pathname === "/about"}
+                    onClick={() => scrollTo("about")}
+                    selected={activeSection === "about"}
                   />
                 </>
               )}
@@ -180,15 +180,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="book"
-                    href="/blog"
-                    label={blog.label}
-                    selected={pathname.startsWith("/blog")}
+                    label={"Studies"}
+                    onClick={() => scrollTo("studies")}
+                    selected={activeSection === "studies"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="book"
-                    href="/blog"
-                    selected={pathname.startsWith("/blog")}
+                    onClick={() => scrollTo("studies")}
+                    selected={activeSection === "studies"}
                   />
                 </>
               )}
@@ -197,15 +197,15 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="gallery"
-                    href="/gallery"
-                    label={gallery.label}
-                    selected={pathname.startsWith("/gallery")}
+                    label={"Tech"}
+                    onClick={() => scrollTo("tech")}
+                    selected={activeSection === "tech"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="gallery"
-                    href="/gallery"
-                    selected={pathname.startsWith("/gallery")}
+                    onClick={() => scrollTo("tech")}
+                    selected={activeSection === "tech"}
                   />
                 </>
               )}
