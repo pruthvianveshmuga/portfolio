@@ -15,6 +15,7 @@ import {
   work,
   gallery,
 } from "@/app/resources/content";
+import { useSectionRefs } from "@/context/SectionContext";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -55,41 +56,39 @@ export default TimeDisplay;
 export const Header = () => {
   const pathname = usePathname() ?? "";
   const [activeSection, setActiveSection] = useState("about");
+  const sectionRefs = useSectionRefs();
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll("section");
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
+      const scrollPosition = window.scrollY + 34;
 
-        if (
-          window.pageYOffset >= section.offsetTop + 34 &&
-          window.pageYOffset < section.offsetTop + section.offsetHeight + 34
-        ) {
-          let current = section.getAttribute("id");
-          setActiveSection(current);
+      Object.entries(sectionRefs).forEach(([id, ref]) => {
+        if (!ref.current) return;
+
+        const element = ref.current;
+        const sectionTop = element.offsetTop;
+        const sectionBottom = sectionTop + element.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          setActiveSection(id);
         }
       });
     };
-    // Add event listeners
+
     window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionRefs]);
 
-    // Clean up event listeners
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Smooth scroll function
-  const scrollTo = (id: string, offset: number = 80) => {
-    const element = document.getElementById(id);
-    if (element) {
+  const scrollTo = (id: string) => {
+    const sectionRef = sectionRefs[id as keyof typeof sectionRefs];
+    if (sectionRef.current) {
       window.scrollTo({
-        top: element.offsetTop + 34,
+        top: sectionRef.current.offsetTop + 34,
         behavior: "smooth",
       });
     }
   };
+
   return (
     <>
       <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
