@@ -1,6 +1,15 @@
 import React from "react";
 
-import { Heading, Flex, Text, Button, Avatar, RevealFx, Arrow, Column } from "@/once-ui/components";
+import {
+  Heading,
+  Flex,
+  Text,
+  Button,
+  Avatar,
+  RevealFx,
+  Arrow,
+  Column,
+} from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
@@ -39,33 +48,34 @@ export async function generateMetadata() {
 }
 
 export default function Home() {
-  return (<>
-    <Column maxWidth="m" gap="xl" horizontal="center">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: home.title,
-            description: home.description,
-            url: `https://${baseURL}`,
-            image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
-            publisher: {
-              "@type": "Person",
-              name: person.name,
-              image: {
-                "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+  return (
+    <>
+      <Column maxWidth="m" gap="xl" horizontal="center">
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: home.title,
+              description: home.description,
+              url: `https://${baseURL}`,
+              image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+              publisher: {
+                "@type": "Person",
+                name: person.name,
+                image: {
+                  "@type": "ImageObject",
+                  url: `${baseURL}${person.avatar}`,
+                },
               },
-            },
-          }),
-        }}
-      />
-      <Info />
-      {newsletter.display && <Mailchimp newsletter={newsletter} />}
-    </Column>
+            }),
+          }}
+        />
+        <Info />
+        {newsletter.display && <Mailchimp newsletter={newsletter} />}
+      </Column>
     </>
   );
 }
