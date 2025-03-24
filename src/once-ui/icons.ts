@@ -31,11 +31,13 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiReadCvLogo,
 } from "react-icons/pi";
 
 import { LiaToolsSolid } from "react-icons/lia";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { MdOutlineFileDownload } from "react-icons/md";
 
 import PersonalityIcon from "./icons/svg/PersonalityIcon";
 
@@ -57,6 +59,8 @@ export const iconLibrary: Record<string, IconType> = {
   globe: HiMiniGlobeAsiaAustralia,
   tools: LiaToolsSolid,
   personality: PersonalityIcon,
+  download: MdOutlineFileDownload,
+  resume: PiReadCvLogo,
   person: PiUserCircleDuotone,
   grid: PiGridFourDuotone,
   book: PiBookBookmarkDuotone,

@@ -326,6 +326,19 @@ export function AboutContent() {
                         )}
                       </Column>
                     ))}
+                    {info.resume.display && (
+                      <Flex fillWidth horizontal="start" paddingTop="m">
+                        <Button
+                          href={info.resume.link}
+                          label={info.resume.label}
+                          prefixIcon={info.resume.icon}
+                          variant="secondary"
+                          size="l"
+                          download
+                          target="_blank"
+                        />
+                      </Flex>
+                    )}
                   </Column>
                 </>
               )}
