@@ -215,7 +215,7 @@ export function AboutContent() {
                         {experience.images.length > 0 && (
                           <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
                             {experience.images.map((image, index) => (
-                              <Flex
+                              <Column
                                 key={index}
                                 border="neutral-medium"
                                 radius="m"
@@ -224,17 +224,19 @@ export function AboutContent() {
                                 //@ts-ignore
                                 height={image.height}
                               >
-                                <SmartImage
-                                  enlarge
-                                  radius="m"
-                                  //@ts-ignore
-                                  sizes={image.width.toString()}
-                                  //@ts-ignore
-                                  alt={image.alt}
-                                  //@ts-ignore
-                                  src={image.src}
-                                />
-                              </Flex>
+                                <SmartLink href={image.link}>
+                                  <SmartImage
+                                    enlarge
+                                    radius="m"
+                                    //@ts-ignore
+                                    sizes={image.width.toString()}
+                                    //@ts-ignore
+                                    alt={image.alt}
+                                    //@ts-ignore
+                                    src={image.src}
+                                  />
+                                </SmartLink>
+                              </Column>
                             ))}
                           </Flex>
                         )}
@@ -289,38 +291,65 @@ export function AboutContent() {
                     {info.skills.title}
                   </Heading>
                   <Column fillWidth gap="l">
-                    {info.skills.skills.map((skill, index) => (
-                      <Column key={`${skill}-${index}`} fillWidth gap="4">
-                        <Text variant="heading-strong-l">{skill.title}</Text>
-                        <Text
-                          variant="body-default-m"
-                          onBackground="neutral-weak"
-                        >
-                          {skill.description}
+                    {info.skills.skillGroups.map((skillGroup, index) => (
+                      <Column key={`${skillGroup}-${index}`} fillWidth gap="4">
+                        <Text variant="heading-strong-l">
+                          {skillGroup.title}
                         </Text>
-                        {skill.images && skill.images.length > 0 && (
+                        {skillGroup.images && skillGroup.images.length > 0 && (
                           <Flex fillWidth paddingTop="m" gap="12" wrap>
-                            {skill.images.map((image, index) => (
-                              <Flex
-                                key={index}
-                                border="neutral-medium"
-                                radius="m"
-                                //@ts-ignore
-                                minWidth={image.width}
-                                //@ts-ignore
-                                height={image.height}
-                              >
-                                <SmartImage
-                                  enlarge
-                                  radius="m"
-                                  //@ts-ignore
-                                  sizes={image.width.toString()}
-                                  //@ts-ignore
-                                  alt={image.alt}
-                                  //@ts-ignore
-                                  src={image.src}
-                                />
-                              </Flex>
+                            {skillGroup.images.map((image, index) => (
+                              <Column key={index} horizontal="center" gap="8">
+                                {image.link ? (
+                                  <>
+                                    <SmartLink href={image.link}>
+                                      <Flex
+                                        border="neutral-medium"
+                                        radius="m"
+                                        minWidth={image.width}
+                                        height={image.height}
+                                      >
+                                        <SmartImage
+                                          radius="m"
+                                          sizes={image.width.toString()}
+                                          alt={image.name}
+                                          src={image.src}
+                                        />
+                                      </Flex>
+                                    </SmartLink>
+                                    <SmartLink href={image.link}>
+                                      <Text
+                                        variant="body-default-s"
+                                        onBackground="neutral-weak"
+                                      >
+                                        {image.name}
+                                      </Text>
+                                    </SmartLink>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Flex
+                                      border="neutral-medium"
+                                      radius="m"
+                                      minWidth={image.width}
+                                      height={image.height}
+                                    >
+                                      <SmartImage
+                                        radius="m"
+                                        sizes={image.width.toString()}
+                                        alt={image.name}
+                                        src={image.src}
+                                      />
+                                    </Flex>
+                                    <Text
+                                      variant="body-default-s"
+                                      onBackground="neutral-weak"
+                                    >
+                                      {image.name}
+                                    </Text>
+                                  </>
+                                )}
+                              </Column>
                             ))}
                           </Flex>
                         )}

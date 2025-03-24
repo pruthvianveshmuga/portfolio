@@ -6,6 +6,7 @@ const routes = {
   "#work": true,
   "#education": true,
   "#skills": true,
+  "/gallery": true,
 };
 
 // Enable password protection on selected routes
