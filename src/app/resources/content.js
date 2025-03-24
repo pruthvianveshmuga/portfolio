@@ -15,9 +15,9 @@ const person = {
 
 const contactMe = {
   display: true,
-  title: <>Let’s Connect & Collaborate</>,
+  title: <>Let's Connect & Collaborate</>,
   description: (
-    <>Have a project or idea? Let’s talk! Reach out via LinkedIn, or email.</>
+    <>Have a project or idea? Let's talk! Reach out via LinkedIn, or email.</>
   ),
 };
 
@@ -69,7 +69,7 @@ const info = {
     title: "Introduction",
     description: (
       <>
-        I’m fueled by an unwavering passion to eﬀect positive change in the
+        I'm fueled by an unwavering passion to eﬀect positive change in the
         world. Committed to continuous growth, I firmly believe that with
         tenacity, no challenge is too great to overcome. I cherish workplaces
         that foster learning, promote open-mindedness, and cultivate creativity.
@@ -185,40 +185,185 @@ const info = {
     label: "Skills",
     display: true, // set to false to hide this section
     title: "Technical skills",
-    skills: [
+    skillGroups: [
       {
-        title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
-        // optional: leave the array empty if you don't want to display images
+        title: "Frontend",
         images: [
           {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "JavaScript",
+            link: "https://www.javascript.com/",
+            src: "https://cdn.simpleicons.org/javascript",
+            width: 6,
+            height: 6,
           },
           {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "TypeScript",
+            link: "https://www.typescriptlang.org/",
+            src: "https://cdn.simpleicons.org/typescript",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "React",
+            link: "https://reactjs.org/",
+            src: "https://cdn.simpleicons.org/react",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Redux",
+            link: "https://redux.js.org/",
+            src: "https://cdn.simpleicons.org/redux",
+            width: 6,
+            height: 6,
           },
         ],
       },
       {
-        title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
-        // optional: leave the array empty if you don't want to display images
+        title: "Backend",
         images: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "Node.js",
+            link: "https://nodejs.org/",
+            src: "https://cdn.simpleicons.org/nodedotjs",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Next.js",
+            link: "https://nextjs.org/",
+            src: "https://cdn.simpleicons.org/nextdotjs",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Nest.js",
+            link: "https://nestjs.com/",
+            src: "https://cdn.simpleicons.org/nestjs",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Django",
+            link: "https://www.djangoproject.com/",
+            src: "https://cdn.simpleicons.org/django",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "GraphQL",
+            link: "https://graphql.org/",
+            src: "https://cdn.simpleicons.org/graphql",
+            width: 6,
+            height: 6,
+          },
+        ],
+      },
+      {
+        title: "Database",
+        images: [
+          {
+            name: "PostgreSQL",
+            link: "https://www.postgresql.org/",
+            src: "https://cdn.simpleicons.org/postgresql",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "MongoDB",
+            link: "https://www.mongodb.com/",
+            src: "https://cdn.simpleicons.org/mongodb",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Redis",
+            link: "https://redis.io/",
+            src: "https://cdn.simpleicons.org/redis",
+            width: 6,
+            height: 6,
+          },
+        ],
+      },
+      {
+        title: "Infrastructure",
+        images: [
+          {
+            name: "AWS",
+            link: "https://aws.amazon.com/",
+            src: "https://cdn.simpleicons.org/amazonwebservices",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Serverless",
+            link: "https://aws.amazon.com/serverless/",
+            src: "https://cdn.simpleicons.org/awslambda",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Docker",
+            link: "https://www.docker.com/",
+            src: "https://cdn.simpleicons.org/docker",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "CI/CD",
+            link: "https://www.jenkins.io/",
+            src: "https://cdn.simpleicons.org/jenkins",
+            width: 6,
+            height: 6,
+          },
+        ],
+      },
+      {
+        title: "Testing",
+        images: [
+          {
+            name: "Jest",
+            link: "https://jestjs.io/",
+            src: "https://cdn.simpleicons.org/jest",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Playwright",
+            link: "https://playwright.dev/",
+            src: "/images/logos/playwright.svg",
+            width: 6,
+            height: 6,
+          },
+        ],
+      },
+      {
+        title: "AI",
+        images: [
+          {
+            name: "LangChain",
+            link: "https://www.langchain.com/",
+            src: "https://cdn.simpleicons.org/langchain",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Chat Bots",
+            src: "/images/logos/chatbots.webp",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "Vector Database",
+            src: "/images/logos/vector-database.webp",
+            width: 6,
+            height: 6,
+          },
+          {
+            name: "RAG",
+            src: "/images/logos/rag.webp",
+            width: 6,
+            height: 6,
           },
         ],
       },
