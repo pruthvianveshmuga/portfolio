@@ -164,7 +164,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               </Flex>
             </Flex>
           </SectionProvider>
-          <Footer />
+          {/* <Footer /> */}
         </Column>
       </ToastProvider>
       <Analytics />
