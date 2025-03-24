@@ -2,10 +2,10 @@ const baseURL = "demo.magic-portfolio.com";
 
 const routes = {
   "/": true,
-  "/about": true,
-  "/work": true,
-  "/blog": true,
-  "/gallery": true,
+  "#about": true,
+  "#work": true,
+  "#education": true,
+  "#skills": true,
 };
 
 // Enable password protection on selected routes
@@ -63,8 +63,8 @@ const effects = {
 };
 
 const display = {
-  location: true,
-  time: true,
+  location: false,
+  toolbar: false,
 };
 
 const mailchimp = {

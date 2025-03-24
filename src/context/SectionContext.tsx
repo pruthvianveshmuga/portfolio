@@ -5,8 +5,8 @@ import { createContext, useContext, useRef, ReactNode } from "react";
 interface SectionRefs {
   about: React.RefObject<HTMLElement>;
   work: React.RefObject<HTMLElement>;
-  studies: React.RefObject<HTMLElement>;
-  tech: React.RefObject<HTMLElement>;
+  education: React.RefObject<HTMLElement>;
+  skills: React.RefObject<HTMLElement>;
 }
 
 const SectionContext = createContext<SectionRefs | null>(null);
@@ -15,8 +15,8 @@ export function SectionProvider({ children }: { children: ReactNode }) {
   const sectionRefs = {
     about: useRef<HTMLElement>(null),
     work: useRef<HTMLElement>(null),
-    studies: useRef<HTMLElement>(null),
-    tech: useRef<HTMLElement>(null),
+    education: useRef<HTMLElement>(null),
+    skills: useRef<HTMLElement>(null),
   };
 
   return (

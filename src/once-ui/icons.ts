@@ -33,7 +33,11 @@ import {
   PiImageDuotone,
 } from "react-icons/pi";
 
+import { LiaToolsSolid } from "react-icons/lia";
+
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+
+import PersonalityIcon from "./icons/svg/PersonalityIcon";
 
 export const iconLibrary: Record<string, IconType> = {
   chevronUp: HiChevronUp,
@@ -51,6 +55,8 @@ export const iconLibrary: Record<string, IconType> = {
   checkCircle: HiCheckCircle,
   email: HiEnvelope,
   globe: HiMiniGlobeAsiaAustralia,
+  tools: LiaToolsSolid,
+  personality: PersonalityIcon,
   person: PiUserCircleDuotone,
   grid: PiGridFourDuotone,
   book: PiBookBookmarkDuotone,

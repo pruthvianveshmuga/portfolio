@@ -10,42 +10,21 @@ import {
   IconButton,
   RevealFx,
   SmartImage,
+  SmartLink,
   Tag,
   Text,
 } from "@/once-ui/components";
 import styles from "@/components/about/about.module.scss";
-import { person, about, social } from "@/app/resources/content";
+import { person, info, social } from "@/app/resources/content";
 import { useSectionRefs } from "@/context/SectionContext";
 
 export function AboutContent() {
   const sectionRefs = useSectionRefs();
-  const structure = [
-    {
-      title: about.intro.title,
-      display: about.intro.display,
-      items: [],
-    },
-    {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
-    },
-    {
-      title: about.studies.title,
-      display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
-    },
-    {
-      title: about.technical.title,
-      display: about.technical.display,
-      items: about.technical.skills.map((skill) => skill.title),
-    },
-  ];
   return (
     <Column maxWidth="m">
       <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="m">
         <Flex fillWidth mobileDirection="column" horizontal="center">
-          {about.avatar.display && (
+          {info.avatar.display && (
             <Column
               className={styles.avatar}
               minWidth="160"
@@ -57,8 +36,13 @@ export function AboutContent() {
             >
               <Avatar src={person.avatar} size="xl" />
               <Flex gap="8" vertical="center">
-                <Icon onBackground="accent-weak" name="globe" />
-                {person.location}
+                <Icon name="personality" size="m" />
+                <SmartLink
+                  href="https://www.16personalities.com/infj-personality"
+                  className="pl-0 ml-0"
+                >
+                  {person.personality}
+                </SmartLink>
               </Flex>
               {person.languages.length > 0 && (
                 <Flex wrap gap="8">
@@ -75,13 +59,13 @@ export function AboutContent() {
           <Column className={styles.blockAlign} flex={9} maxWidth={40}>
             <section ref={sectionRefs.about}>
               <Column
-                id={about.intro.title}
+                id={info.about.title}
                 fillWidth
                 minHeight="160"
                 vertical="center"
                 marginBottom="32"
               >
-                {about.calendar.display && (
+                {info.calendar.display && (
                   <Flex
                     fitWidth
                     border="brand-alpha-medium"
@@ -103,7 +87,7 @@ export function AboutContent() {
                     />
                     <Flex paddingX="8">Schedule a call</Flex>
                     <IconButton
-                      href={about.calendar.link}
+                      href={info.calendar.link}
                       data-border="rounded"
                       variant="secondary"
                       icon="chevronRight"
@@ -161,30 +145,30 @@ export function AboutContent() {
                 )}
               </Column>
 
-              {about.intro.display && (
+              {info.about.display && (
                 <Column
                   textVariant="body-default-l"
                   fillWidth
                   gap="m"
                   marginBottom="xl"
                 >
-                  {about.intro.description}
+                  {info.about.description}
                 </Column>
               )}
             </section>
             <section ref={sectionRefs.work}>
-              {about.work.display && (
+              {info.work.display && (
                 <>
                   <Heading
                     as="h2"
-                    id={about.work.title}
+                    id={info.work.title}
                     variant="display-strong-s"
                     marginBottom="m"
                   >
-                    {about.work.title}
+                    {info.work.title}
                   </Heading>
                   <Column fillWidth gap="l" marginBottom="40">
-                    {about.work.experiences.map((experience, index) => (
+                    {info.work.experiences.map((experience, index) => (
                       <Column
                         key={`${experience.company}-${experience.role}-${index}`}
                         fillWidth
@@ -260,19 +244,19 @@ export function AboutContent() {
                 </>
               )}
             </section>
-            <section ref={sectionRefs.studies}>
-              {about.studies.display && (
+            <section ref={sectionRefs.education}>
+              {info.education.display && (
                 <>
                   <Heading
                     as="h2"
-                    id={about.studies.title}
+                    id={info.education.title}
                     variant="display-strong-s"
                     marginBottom="m"
                   >
-                    {about.studies.title}
+                    {info.education.title}
                   </Heading>
                   <Column fillWidth gap="l" marginBottom="40">
-                    {about.studies.institutions.map((institution, index) => (
+                    {info.education.institutions.map((institution, index) => (
                       <Column
                         key={`${institution.name}-${index}`}
                         fillWidth
@@ -293,19 +277,19 @@ export function AboutContent() {
                 </>
               )}
             </section>
-            <section ref={sectionRefs.tech}>
-              {about.technical.display && (
+            <section ref={sectionRefs.skills}>
+              {info.skills.display && (
                 <>
                   <Heading
                     as="h2"
-                    id={about.technical.title}
+                    id={info.skills.title}
                     variant="display-strong-s"
                     marginBottom="40"
                   >
-                    {about.technical.title}
+                    {info.skills.title}
                   </Heading>
                   <Column fillWidth gap="l">
-                    {about.technical.skills.map((skill, index) => (
+                    {info.skills.skills.map((skill, index) => (
                       <Column key={`${skill}-${index}`} fillWidth gap="4">
                         <Text variant="heading-strong-l">{skill.title}</Text>
                         <Text

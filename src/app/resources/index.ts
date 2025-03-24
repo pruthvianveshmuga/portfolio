@@ -13,7 +13,7 @@ export {
   social,
   newsletter,
   home,
-  about,
+  info as about,
   blog,
   work,
   gallery,
