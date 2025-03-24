@@ -1,10 +1,21 @@
 "use client";
 
-import { mailchimp } from "@/app/resources";
-import { Button, Flex, Heading, Input, Text, Background, Column } from "@/once-ui/components";
+import { mailchimp, social } from "@/app/resources";
+import {
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Text,
+  Background,
+  Column,
+} from "@/once-ui/components";
 import { useState } from "react";
 
-function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  delay: number
+): T {
   let timeout: ReturnType<typeof setTimeout>;
   return ((...args: Parameters<T>) => {
     clearTimeout(timeout);
@@ -12,46 +23,17 @@ function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T
   }) as T;
 }
 
-type NewsletterProps = {
+type ContactMeProps = {
   display: boolean;
   title: string | JSX.Element;
   description: string | JSX.Element;
 };
 
-export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
-  const [email, setEmail] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [touched, setTouched] = useState<boolean>(false);
-
-  const validateEmail = (email: string): boolean => {
-    if (email === "") {
-      return true;
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-
-    if (!validateEmail(value)) {
-      setError("Please enter a valid email address.");
-    } else {
-      setError("");
-    }
-  };
-
-  const debouncedHandleChange = debounce(handleChange, 2000);
-
-  const handleBlur = () => {
-    setTouched(true);
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
-    }
-  };
-
+export const Mailchimp = ({
+  contactMe: contactMe,
+}: {
+  contactMe: ContactMeProps;
+}) => {
   return (
     <Column
       overflow="hidden"
@@ -112,8 +94,12 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
           opacity: mailchimp.effects.lines.opacity as any,
         }}
       />
-      <Heading style={{ position: "relative" }} marginBottom="s" variant="display-strong-xs">
-        {newsletter.title}
+      <Heading
+        style={{ position: "relative" }}
+        marginBottom="s"
+        variant="display-strong-xs"
+      >
+        {contactMe.title}
       </Heading>
       <Text
         style={{
@@ -124,70 +110,21 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
         marginBottom="l"
         onBackground="neutral-medium"
       >
-        {newsletter.description}
+        {contactMe.description}
       </Text>
-      <form
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-        action={mailchimp.action}
-        method="post"
-        id="mc-embedded-subscribe-form"
-        name="mc-embedded-subscribe-form"
-      >
-        <Flex id="mc_embed_signup_scroll" fillWidth maxWidth={24} gap="8">
-          <Input
-            formNoValidate
-            labelAsPlaceholder
-            id="mce-EMAIL"
-            name="EMAIL"
-            type="email"
-            label="Email"
-            required
-            onChange={(e) => {
-              if (error) {
-                handleChange(e);
-              } else {
-                debouncedHandleChange(e);
-              }
-            }}
-            onBlur={handleBlur}
-            errorMessage={error}
-          />
-          <div style={{ display: "none" }}>
-            <input
-              type="checkbox"
-              readOnly
-              name="group[3492][1]"
-              id="mce-group[3492]-3492-0"
-              value=""
-              checked
-            />
-          </div>
-          <div id="mce-responses" className="clearfalse">
-            <div className="response" id="mce-error-response" style={{ display: "none" }}></div>
-            <div className="response" id="mce-success-response" style={{ display: "none" }}></div>
-          </div>
-          <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
-            <input
-              type="text"
-              readOnly
-              name="b_c1a5a210340eb6c7bff33b2ba_0462d244aa"
-              tabIndex={-1}
-              value=""
-            />
-          </div>
-          <div className="clear">
-            <Flex height="48" vertical="center">
-              <Button id="mc-embedded-subscribe" value="Subscribe" size="m" fillWidth>
-                Subscribe
-              </Button>
-            </Flex>
-          </div>
-        </Flex>
-      </form>
+
+      <Flex fillWidth maxWidth={24} gap="12" horizontal="center">
+        {social
+          .filter((item) => ["LinkedIn", "Email"].includes(item.name))
+          .map(
+            (item) =>
+              item.link && (
+                <Button size="m" prefixIcon={item.icon} href={item.link}>
+                  {item.name}
+                </Button>
+              )
+          )}
+      </Flex>
     </Column>
   );
 };
