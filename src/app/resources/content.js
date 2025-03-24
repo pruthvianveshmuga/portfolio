@@ -13,14 +13,11 @@ const person = {
   languages: ["English", "Hindi"], // optional: Leave the array empty if you don't want to display languages
 };
 
-const newsletter = {
+const contactMe = {
   display: true,
   title: <>Let’s Connect & Collaborate</>,
   description: (
-    <>
-      Have a project or idea? Let’s talk! Reach out via LinkedIn, GitHub, or
-      email.
-    </>
+    <>Have a project or idea? Let’s talk! Reach out via LinkedIn, or email.</>
   ),
 };
 
@@ -324,4 +321,4 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, info, blog, work, gallery };
+export { person, social, contactMe, home, info, blog, work, gallery };

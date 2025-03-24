@@ -13,7 +13,7 @@ import {
 import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
-import { home, info, person, newsletter } from "@/app/resources/content";
+import { home, info, person, contactMe } from "@/app/resources/content";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import Info from "./about/page";
@@ -74,7 +74,7 @@ export default function Home() {
           }}
         />
         <Info />
-        {newsletter.display && <Mailchimp newsletter={newsletter} />}
+        {contactMe.display && <Mailchimp contactMe={contactMe} />}
       </Column>
     </>
   );

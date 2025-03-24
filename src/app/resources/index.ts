@@ -11,7 +11,7 @@ export {
 export {
   person,
   social,
-  newsletter,
+  contactMe,
   home,
   info as about,
   blog,
