@@ -224,6 +224,12 @@ const info = {
       },
     ],
   },
+  resume: {
+    label: "Download Resume",
+    display: true,
+    link: "/resume/pruthvi-anvesh-muga.pdf",
+    icon: "resume",
+  },
 };
 
 const blog = {
